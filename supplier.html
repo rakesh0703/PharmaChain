@@ -1,0 +1,1041 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title>manufacturer</title>
+</head>
+<body>
+ a.createMedicine.
+	  b.updateMedicine.(itwillonlyinvokeiftheparticipantinvokingthistransactionistheownerofthemedicine,onlypreviousownercanc	hangethenewownerofthemedicine)
+	  c.createContract.(canonlyaddthemedicineswhichmanufacturerownsinthecontract)
+	  d.updateContract
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Supplier</title>
+	<link rel="stylesheet" type="text/css" href="manufacturer.css">
+</head>
+<body>
+<div class="manufacturer-main">
+	<div id="GetQuot">
+	  <form class="modal-content">
+	    <div class="container">
+	      <label for="GetQuot"><b>Supplier id</b></label>
+	      <input type="text" placeholder="Enter Quot Number " id="GetQuot" required>  
+	      <button type="submit" id="getsupQuotlist">Get Supplier</button>
+	    </div>
+	  </form>
+	</div>
+</div>
+<script>
+	if(typeof web3 != 'undefined') { 
+				web3 = new Web3(web3.currentProvider) // what Metamask injected 
+			} else {
+				// Instantiate and set Ganache as your provider
+				web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+	
+			}
+			ethereum.enable().then((account) => {
+			const defaultAccount = account[0]
+			//console.log(defaultAccount)
+			web3.eth.defaultAccount = defaultAccount
+			})
+	
+			var PharmaChain = web3.eth.contract([
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "mfgs",
+			"outputs": [
+				{
+					"name": "mfgid",
+					"type": "uint256"
+				},
+				{
+					"name": "mfgname",
+					"type": "string"
+				},
+				{
+					"name": "productname",
+					"type": "string"
+				},
+				{
+					"name": "status",
+					"type": "uint8"
+				},
+				{
+					"name": "mfgaddress",
+					"type": "address"
+				},
+				{
+					"name": "createdby",
+					"type": "address"
+				},
+				{
+					"name": "createdat",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_id",
+					"type": "uint256"
+				}
+			],
+			"name": "rejectMfg",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_quotlist",
+					"type": "uint256"
+				}
+			],
+			"name": "aproveRequot",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_quotlist",
+					"type": "uint256"
+				}
+			],
+			"name": "rejectRequot",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_quotlist",
+					"type": "uint256"
+				}
+			],
+			"name": "rejectQuot",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_id",
+					"type": "uint256"
+				}
+			],
+			"name": "rejectSup",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_superadminaddress",
+					"type": "address"
+				}
+			],
+			"name": "loginSuperAdmin",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_supid",
+					"type": "uint256"
+				}
+			],
+			"name": "searchSup",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"name": "",
+					"type": "string"
+				},
+				{
+					"name": "",
+					"type": "string"
+				},
+				{
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_supidd",
+					"type": "uint256"
+				}
+			],
+			"name": "loginSup",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_mfgidd",
+					"type": "uint256"
+				}
+			],
+			"name": "loginMfg",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_adminaddress",
+					"type": "address"
+				}
+			],
+			"name": "rejectAdmin",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_id",
+					"type": "uint256"
+				}
+			],
+			"name": "getmfgQuotlist",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256[]"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_productid",
+					"type": "uint256"
+				}
+			],
+			"name": "producyOutdev",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_adminaddress",
+					"type": "address"
+				}
+			],
+			"name": "aproveAdmin",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "superAdmin",
+			"outputs": [
+				{
+					"name": "",
+					"type": "address"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_id",
+					"type": "uint256"
+				}
+			],
+			"name": "aproveSup",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "productVerfs",
+			"outputs": [
+				{
+					"name": "productname",
+					"type": "string"
+				},
+				{
+					"name": "productid",
+					"type": "uint256"
+				},
+				{
+					"name": "quality",
+					"type": "uint256"
+				},
+				{
+					"name": "status",
+					"type": "uint8"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "admins",
+			"outputs": [
+				{
+					"name": "name",
+					"type": "string"
+				},
+				{
+					"name": "status",
+					"type": "uint8"
+				},
+				{
+					"name": "adminaddress",
+					"type": "address"
+				},
+				{
+					"name": "createdby",
+					"type": "address"
+				},
+				{
+					"name": "createdat",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "sups",
+			"outputs": [
+				{
+					"name": "supid",
+					"type": "uint256"
+				},
+				{
+					"name": "supname",
+					"type": "string"
+				},
+				{
+					"name": "rawmat",
+					"type": "string"
+				},
+				{
+					"name": "price",
+					"type": "uint256"
+				},
+				{
+					"name": "status",
+					"type": "uint8"
+				},
+				{
+					"name": "supaddress",
+					"type": "address"
+				},
+				{
+					"name": "createdby",
+					"type": "address"
+				},
+				{
+					"name": "createdat",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_id",
+					"type": "uint256"
+				}
+			],
+			"name": "aproveMfg",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_id",
+					"type": "address"
+				}
+			],
+			"name": "getAdmin",
+			"outputs": [
+				{
+					"name": "",
+					"type": "string"
+				},
+				{
+					"name": "",
+					"type": "uint8"
+				},
+				{
+					"name": "",
+					"type": "address"
+				},
+				{
+					"name": "",
+					"type": "address"
+				},
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_productid",
+					"type": "uint256"
+				}
+			],
+			"name": "rejectProduct",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_mfgid",
+					"type": "uint256"
+				},
+				{
+					"name": "_mfgname",
+					"type": "string"
+				},
+				{
+					"name": "_productname",
+					"type": "string"
+				},
+				{
+					"name": "_mfgaddress",
+					"type": "address"
+				}
+			],
+			"name": "createMfg",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_quotlist",
+					"type": "uint256"
+				}
+			],
+			"name": "aproveQuot",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "quots",
+			"outputs": [
+				{
+					"name": "rawmat",
+					"type": "string"
+				},
+				{
+					"name": "quantity",
+					"type": "uint256"
+				},
+				{
+					"name": "price",
+					"type": "uint256"
+				},
+				{
+					"name": "status",
+					"type": "uint8"
+				},
+				{
+					"name": "supid",
+					"type": "uint256"
+				},
+				{
+					"name": "mfgid",
+					"type": "uint256"
+				},
+				{
+					"name": "createdat",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_productid",
+					"type": "uint256"
+				}
+			],
+			"name": "aproveProduct",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_quotlist",
+					"type": "uint256"
+				},
+				{
+					"name": "_quantity",
+					"type": "uint256"
+				},
+				{
+					"name": "_price",
+					"type": "uint256"
+				}
+			],
+			"name": "requot",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_supid",
+					"type": "uint256"
+				},
+				{
+					"name": "_supname",
+					"type": "string"
+				},
+				{
+					"name": "_rawmat",
+					"type": "string"
+				},
+				{
+					"name": "_price",
+					"type": "uint256"
+				},
+				{
+					"name": "_supaddress",
+					"type": "address"
+				}
+			],
+			"name": "createSup",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "mfgsid",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_name",
+					"type": "string"
+				},
+				{
+					"name": "_adminaddress",
+					"type": "address"
+				}
+			],
+			"name": "createAdmin",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_mfgid",
+					"type": "uint256"
+				},
+				{
+					"name": "_rawmat",
+					"type": "string"
+				},
+				{
+					"name": "_quantity",
+					"type": "uint256"
+				},
+				{
+					"name": "_price",
+					"type": "uint256"
+				},
+				{
+					"name": "_supid",
+					"type": "uint256"
+				}
+			],
+			"name": "createQuot",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_mfgid",
+					"type": "uint256"
+				}
+			],
+			"name": "searchMfg",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"name": "",
+					"type": "string"
+				},
+				{
+					"name": "",
+					"type": "string"
+				},
+				{
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_productid",
+					"type": "uint256"
+				}
+			],
+			"name": "getProduct",
+			"outputs": [
+				{
+					"name": "",
+					"type": "string"
+				},
+				{
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_id",
+					"type": "uint256"
+				}
+			],
+			"name": "getsupQuotlist",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256[]"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "supsid",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_adminaddress",
+					"type": "address"
+				}
+			],
+			"name": "loginAdmin",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_quotid",
+					"type": "uint256"
+				}
+			],
+			"name": "getQuot",
+			"outputs": [
+				{
+					"name": "",
+					"type": "string"
+				},
+				{
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"name": "",
+					"type": "uint8"
+				},
+				{
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_productname",
+					"type": "string"
+				},
+				{
+					"name": "_productid",
+					"type": "uint256"
+				},
+				{
+					"name": "_quality",
+					"type": "uint256"
+				}
+			],
+			"name": "productVerify",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"payable": true,
+			"stateMutability": "payable",
+			"type": "constructor"
+		}
+	]);
+			// Grab the contract at specified deployed address with the interface defined by the ABI
+			const pharmachain = PharmaChain.at('0x439d8e210f05ea4f679d56e827abd0037c829dec');
+	
+			$(document).ready(function () {
+ $("#getsupQuotlist").click(function(){
+	 var add= document.getElementById("GetQuot").value;
+	// alert(add);
+	 pharmachain.getAdmin.call(add,function(error,response){
+		 alert(add);
+        if(!error){
+			alert(response); //make some loader or waiting
+			document.getElementById("result_getmfgquotlist").innerHTML=response;
+        }else{
+            return console.log(error);
+        }
+	});
+ });
+});
+	</script>
+</body>
+</html>
+

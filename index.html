@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>verified admin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+ 
+</head>
+
+<body>
+  <nav id="nav1" class="navbar navbar-expand-lg   ">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a style="color: white;" class="navbar-brand" href="/">PharmaChains <i class="fa fa-link" aria-hidden="true"></i> </a>
+        </div>
+        <div class="nav collapse navbar-collapse " >
+            <ul class=" nav ml-auto" >
+                <li style="padding: 10px;"><a style="color: white;" href="/">  Create Functions  </a></li>
+                <li style="padding: 10px"><a style="color: white;" href="/" >Get Functions</a></li>
+            </ul>
+  </div>
+  </div>
+  </nav>
+
+  <div class="container" style="padding: 0;">
+  	<div class="jumbotron" style="height:100vh; width: 70%; margin: 0 auto; text-align: center; ">
+  		<header><h2 style="text-align: center;">Verified Admin View</h2></header>
+  		
+	  <button  class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5" onclick="document.getElementById('createadmin').style.display='block'"
+	    style="width:auto;"><i class="fa fa-user-plus" aria-hidden="true"></i> Create Admin</button>
+	  <button  class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5" onclick="document.getElementById('createmanufacturer').style.display='block'" style="width:auto;"><i class="fa fa-id-badge" aria-hidden="true"></i> Create
+	    Manufacturer</button>
+	  <button class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5" onclick="document.getElementById('createsupplier').style.display='block'" style="width:auto;"><i class="fa fa-id-card-o" aria-hidden="true"></i> Create
+	    Supplier</button>
+	  <button class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5" onclick="document.getElementById('approvequot').style.display='block'" style="width:auto;"><i class="fa fa-check-square-o" aria-hidden="true"></i> Approve
+	    Quote</button>
+	  <button class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5" onclick="document.getElementById('rejectquot').style.display='block'" style="width:auto;"><i class="fa fa-window-close-o" aria-hidden="true"></i> Reject Quote
+	  </button>
+	  <button class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5" onclick="document.getElementById('approverequot').style.display='block'" style="width:auto;"><i class="fa fa-check-square-o" aria-hidden="true"></i> Approve
+	    Requote</button>
+	  <button class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5"  onclick="document.getElementById('rejectrequot').style.display='block'" style="width:auto;"><i class="fa fa-window-close-o" aria-hidden="true"></i> Reject
+	    requot</button>
+	  <button class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5"  onclick="document.getElementById('approveproduct').style.display='block'" style="width:auto;"><i class="fa fa-check-square-o" aria-hidden="true"></i> Approve
+	    Product</button>
+	  <button class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5" onclick="document.getElementById('rejectproduct').style.display='block'" style="width:auto;"><i class="fa fa-window-close-o" aria-hidden="true"></i> Reject
+	    Product</button>
+	  <button class="btn1 btn-success" style="width: 280px; height: 50px; background-color: #0d98c5" onclick="document.getElementById('pod').style.display='block'" style="width:auto;"><i class="fa fa-truck" aria-hidden="true"></i> Product Out for
+		Delivery</button>
+
+    </div>
+
+
+
+
+  <div id="createadmin" class="modal">
+
+    <form class="modal-content animate">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('createadmin').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="name"><b>Name</b></label>
+        <input id="createadminname" type="text" placeholder="Enter Name" required>
+
+        <label for="psw"><b>Address</b></label>
+        <input id="createadminadd" type="text" placeholder="Enter Address" required>
+
+        <button type="submit" onclick="createadmin()">Create Admin</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('createadmin').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+  <div id="createmanufacturer" class="modal">
+
+    <form class="modal-content animate">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('createmanufacturer').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="mfgid"><b>Manufacturer id</b></label>
+        <input id="mfgid" type="text" placeholder="Enter Manufacturer id" name="mfgid" required>
+
+        <label for="mfname"><b>Manufacturer Name</b></label>
+        <input id="mfgname" type="text" placeholder="Enter Manufacturer name" name="mfgname" required>
+
+        <label for="productname"><b>Product Name</b></label>
+        <input id="mfgproname" type="text" placeholder="Enter Product Name" name="productname" required>
+
+        <label for="mfgadd"><b>Manufacturer Address</b></label>
+        <input id="mfgadd" type="text" placeholder="Enter Manufacturer Address" name="mfgadd" required>
+
+        <button onclick="createmfg()" type="submit">create Manufacturer</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('createmanufacturer').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+
+
+
+
+
+  <div id="createsupplier" class="modal">
+
+    <form class="modal-content animate">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('createsupplier').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="supid"><b>supplier id</b></label>
+        <input id="supid" type="text" placeholder="Supplier id" name="supid" required>
+
+        <label for="supname"><b>Supplier name</b></label>
+        <input id="supname" type="text" placeholder="Supplier name" name="supname" required>
+
+        <label for="rawmat"><b>Raw material</b></label>
+        <input id="rawmat" type="text" placeholder="Raw material" name="rawmat" required>
+
+        <label for="price"><b>Price</b></label>
+        <input id="price" type="text" placeholder="Price" name="price" required>
+
+        <label for="supadd"><b>supplier address</b></label>
+        <input id="supadd" type="text" placeholder="Supplier Address" name="supadd" required>
+
+        <button onclick="createsupplier()" type="submit">Create Supplier</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('createsupplier').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="approvequot" class="modal">
+
+    <form class="modal-content animate" >
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('approvequot').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="quotlist"><b>Name</b></label>
+        <input id="approve_quotlist" type="text" placeholder="Enter quotlist" name="quotlist" required>
+        <button onclick="approvequot()" type="submit">Approve Quot</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('approvequot').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="approverequot" class="modal">
+
+    <form class="modal-content animate" >
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('approverequot').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="_quotlist"><b>Enter requotid</b></label>
+        <input id="approve_requotlist" type="text" placeholder="Enter quotlist" name="_quotlist" required>
+        <button onclick="approverequot()" type="submit">Approve Requot</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('approvequot').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="rejectquot" class="modal">
+
+    <form class="modal-content animate" >
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('rejectquot').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="quotlist"><b>Enter quotlist</b></label>
+        <input id="reject_quotlist" type="text" placeholder="Enter quotlist" name="quotlist" required>
+        <button onclick="rejectquot()" type="submit">Reject Quot</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('rejectquot').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="rejectrequot" class="modal">
+
+    <form class="modal-content animate" >
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('rejectrequot').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="quotlist"><b>Enter quotlist</b></label>
+        <input id="reject_requotlist" type="text" placeholder="Enter quotlist" name="quotlist" required>
+        <button onclick="rejectrequot()" type="submit">Reject re Quot</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('rejectrequot').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="approveproduct" class="modal">
+
+    <form class="modal-content animate" >
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('approveproduct').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="productid"><b>Product id</b></label>
+        <input id="approve_product" type="text" placeholder="Enter productid" name="productid" required>
+        <button onclick="approveproduct()" type="submit">Approve Product</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('approveproduct').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="rejectproduct" class="modal">
+
+    <form class="modal-content animate" >
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('rejectproduct').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="productid"><b>Product id</b></label>
+        <input id="reject_product"  type="text" placeholder="Enter productid" name="productid" required>
+        <button onclick="rejectproduct()" type="submit">Reject Product</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('rejectproduct').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="pod" class="modal">
+
+    <form class="modal-content animate">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('pod').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
+
+      <div class="container">
+        <label for="productid"><b>Product id</b></label>
+        <input id="out_for_product"   type="text" placeholder="Enter productid" name="productid" required>
+        <button type="submit" onclick="pod()">Product out for delivery</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('pod').style.display='none'"
+          class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <script>    
+
+
+    if(typeof web3 != 'undefined') { 
+        web3 = new Web3(web3.currentProvider) // what Metamask injected 
+    } else {
+        // Instantiate and set Ganache as your provider
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+
+    }
+    ethereum.enable().then((account) => {
+	const defaultAccount = account[0]
+//console.log(defaultAccount)
+	web3.eth.defaultAccount = defaultAccount
+	})
+
+    var PharmaChain = web3.eth.contract([
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "mfgs",
+		"outputs": [
+			{
+				"name": "mfgid",
+				"type": "uint256"
+			},
+			{
+				"name": "mfgname",
+				"type": "string"
+			},
+			{
+				"name": "productname",
+				"type": "string"
+			},
+			{
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"name": "mfgaddress",
+				"type": "address"
+			},
+			{
+				"name": "createdby",
+				"type": "address"
+			},
+			{
+				"name": "createdat",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "rejectMfg",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_quotlist",
+				"type": "uint256"
+			}
+		],
+		"name": "aproveRequot",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_quotlist",
+				"type": "uint256"
+			}
+		],
+		"name": "rejectRequot",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_quotlist",
+				"type": "uint256"
+			}
+		],
+		"name": "rejectQuot",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "rejectSup",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "address"
+			}
+		],
+		"name": "loginSuperAdmin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_supid",
+				"type": "uint256"
+			}
+		],
+		"name": "searchSup",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "loginSup",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "loginMfg",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_adminaddress",
+				"type": "address"
+			}
+		],
+		"name": "rejectAdmin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getmfgQuotlist",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_productid",
+				"type": "uint256"
+			}
+		],
+		"name": "producyOutdev",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_adminaddress",
+				"type": "address"
+			}
+		],
+		"name": "aproveAdmin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "superAdmin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "aproveSup",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "productVerfs",
+		"outputs": [
+			{
+				"name": "productname",
+				"type": "string"
+			},
+			{
+				"name": "productid",
+				"type": "uint256"
+			},
+			{
+				"name": "quality",
+				"type": "uint256"
+			},
+			{
+				"name": "status",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "admins",
+		"outputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"name": "adminaddress",
+				"type": "address"
+			},
+			{
+				"name": "createdby",
+				"type": "address"
+			},
+			{
+				"name": "createdat",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "sups",
+		"outputs": [
+			{
+				"name": "supid",
+				"type": "uint256"
+			},
+			{
+				"name": "supname",
+				"type": "string"
+			},
+			{
+				"name": "rawmat",
+				"type": "string"
+			},
+			{
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"name": "supaddress",
+				"type": "address"
+			},
+			{
+				"name": "createdby",
+				"type": "address"
+			},
+			{
+				"name": "createdat",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "aproveMfg",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "address"
+			}
+		],
+		"name": "getAdmin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint8"
+			},
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_productid",
+				"type": "uint256"
+			}
+		],
+		"name": "rejectProduct",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_mfgid",
+				"type": "uint256"
+			},
+			{
+				"name": "_mfgname",
+				"type": "string"
+			},
+			{
+				"name": "_productname",
+				"type": "string"
+			},
+			{
+				"name": "_mfgaddress",
+				"type": "address"
+			}
+		],
+		"name": "createMfg",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_quotlist",
+				"type": "uint256"
+			}
+		],
+		"name": "aproveQuot",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "quots",
+		"outputs": [
+			{
+				"name": "rawmat",
+				"type": "string"
+			},
+			{
+				"name": "quantity",
+				"type": "uint256"
+			},
+			{
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"name": "supid",
+				"type": "uint256"
+			},
+			{
+				"name": "mfgid",
+				"type": "uint256"
+			},
+			{
+				"name": "createdat",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_productid",
+				"type": "uint256"
+			}
+		],
+		"name": "aproveProduct",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_quotlist",
+				"type": "uint256"
+			},
+			{
+				"name": "_quantity",
+				"type": "uint256"
+			},
+			{
+				"name": "_price",
+				"type": "uint256"
+			}
+		],
+		"name": "requot",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_supid",
+				"type": "uint256"
+			},
+			{
+				"name": "_supname",
+				"type": "string"
+			},
+			{
+				"name": "_rawmat",
+				"type": "string"
+			},
+			{
+				"name": "_price",
+				"type": "uint256"
+			},
+			{
+				"name": "_supaddress",
+				"type": "address"
+			}
+		],
+		"name": "createSup",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "mfgsid",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_adminaddress",
+				"type": "address"
+			}
+		],
+		"name": "createAdmin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_mfgid",
+				"type": "uint256"
+			},
+			{
+				"name": "_rawmat",
+				"type": "string"
+			},
+			{
+				"name": "_quantity",
+				"type": "uint256"
+			},
+			{
+				"name": "_price",
+				"type": "uint256"
+			},
+			{
+				"name": "_supid",
+				"type": "uint256"
+			}
+		],
+		"name": "createQuot",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_mfgid",
+				"type": "uint256"
+			}
+		],
+		"name": "searchMfg",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_productid",
+				"type": "uint256"
+			}
+		],
+		"name": "getProduct",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getsupQuotlist",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "supsid",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_id",
+				"type": "address"
+			}
+		],
+		"name": "loginAdmin",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_quotid",
+				"type": "uint256"
+			}
+		],
+		"name": "getQuot",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint8"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_productname",
+				"type": "string"
+			},
+			{
+				"name": "_productid",
+				"type": "uint256"
+			},
+			{
+				"name": "_quality",
+				"type": "uint256"
+			}
+		],
+		"name": "productVerify",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "constructor"
+	}
+]);
+    // Grab the contract at specified deployed address with the interface defined by the ABI
+    const pharmachain = PharmaChain.at('0x6bf17fead03aedf893e7a4e0b1679e86bd240e08');
+    // Get and display star name
+    // starNotary.starName(function (error, result) {
+    //     if (!error) {
+    //         document.getElementById('star-name').innerText = result
+    //     } else { 
+    //         console.log(error);
+    //     }
+    // });
+    // // Get and display star owner
+    // starNotary.starOwner(function (error, result) {
+    //     if (!error) {
+    //         document.getElementById('star-owner').innerText = result
+    //     } else { 
+    //         console.log(error);
+    //     }
+    // });
+    // Enable claim button being clicked
+    
+    // pharmachain.createAdmin($("#createadminname").val(),$("#createadminadd").val(),function(error,result){
+    //   if(!error){
+    //     console.log("r-->"+result);
+    //     console($("#createadminname").val(),$("#createadminadd").val())
+    //   }
+    // })
+	// $("#createadminn").click(function(){
+	// 	var name=($("#createadminname").val()).toString();
+	// 	const add =$("#createadminadd").val();
+	// 	console.log(name,add);
+	// 	web3.eth.getAccounts().then(function(accounts){
+	// 		var acc=accounts[0];
+	// 		return pharmachain.methods.createAdmin(name,add).send({from: acc});
+	// 	}).then(function(tx){
+	// 		console.log(tx);
+	// 	}).catch(function(tx){
+	// 		console.log(tx);
+	// 	})
+	// })
+		function createadmin(){
+			var name=($("#createadminname").val()).toString();
+			const add =$("#createadminadd").val();
+			console.log(name,add);
+			pharmachain.createAdmin.sendTransaction(
+        	name,add, 
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+	}
+
+
+
+	//for reading purpose
+
+	// function adminn(){
+	// const add = $("#adminadd").val();
+	// pharmachain.getAdmin.call(add,(error,result)=>{
+	// 	if(error){
+	// 		console.log(error);
+	// 	}else{
+	// 		console.log(result);	
+	// 	}
+		
+	// });
+	// }
+
+  
+	function createmfg(){
+			var name=($("#mfgname").val()).toString();
+			var proname=($("#mfgproname").val()).toString();
+			var id =$("#mfgid").val();
+			const add =$("#mfgadd").val()
+			console.log(name,add);
+			pharmachain.createMfg.sendTransaction(
+        	id,name,proname,add, 
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+
+// create supplier function
+	}function createsupplier(){
+			var id =$("#supid").val();
+			var name=($("#supname").val()).toString();
+			var rawmat =$("#rawmat").val();
+			var price =$("#price").val();
+			const add =$("#supadd").val()
+			console.log(name,add);
+			pharmachain.createSup.sendTransaction(
+        	id,name,rawmat , price, add, 
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+
+
+
+
+	}function approvequot(){
+			
+			var ql =$("#approve_quotlist").val();
+			console.log(ql);
+			pharmachain.aproveQuot.sendTransaction(
+        	ql,
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+	}
+
+
+
+
+	function approverequot(){
+		
+			var ql =$("#approve_requotlist").val();
+			console.log(ql);
+			pharmachain.aproveRequot.sendTransaction(
+        	ql, 
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+}
+
+
+function rejectquot(){
+		
+			var ql =$("#reject_quotlist").val();
+			
+			console.log(ql);
+			pharmachain.rejectQuot.sendTransaction(
+      		ql, 
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+}
+
+
+	function rejectrequot(){
+		
+			var ql =$("#reject_requotlist").val();
+			
+			console.log(ql);
+			pharmachain.rejectRequot.sendTransaction(
+        	ql,
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+}
+
+	function approveproduct(){
+		
+			var id =$("#approve_product").val();
+			
+			console.log(id);
+			pharmachain.aproveProduct.sendTransaction(
+        	id, 
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+}  	
+
+
+	function rejectproduct(){
+		
+			var id =$("#reject_product").val();
+			
+			console.log(id);
+			pharmachain.rejectProduct.sendTransaction(
+        	id,
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+}
+
+function pod(){
+	
+			var id =$("#out_for_product").val();
+		
+			console.log(id);
+			pharmachain.productOutdev.sendTransaction(
+        	id,
+         {gasPrice: web3.toWei(4.1, 'Gwei')}, 
+         (error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            console.log("txhash: " + result); 
+        }
+		
+    );
+
+  }
+	
+</script>
+</div>
+</body>
+
+</html>
